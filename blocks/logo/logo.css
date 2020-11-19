@@ -1,3 +1,10 @@
 .logo {
-    display: flex
+    display: flex;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 940px) {
+    .logo {
+        margin-left: 30px;
+    }
 }
