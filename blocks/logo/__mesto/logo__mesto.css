@@ -1,0 +1,11 @@
+.logo__mesto {
+    max-width: 142px;
+    max-height: 33px;
+}
+
+@media (max-width: 520px) {
+    .logo__mesto {
+        max-width: 104px;
+        max-height: 24px;
+    }
+}
