@@ -15,26 +15,23 @@
     </div>
     <div class="header__line"></div>
   </header>
+
   <main class="main">
+
     <content class="profile">
-      <ul class="profile__info">
-        <li class="profile__item-img"><img src="./images/Avatar.png" class="profile__image" alt="Фото исследователя">
-        </li>
-        <li class="profile__item-name">
+      <div class="profile__info">
+        <img src="./images/Avatar.png" class="profile__image" alt="Фото исследователя">
+        <div class="profile__name-button">
           <div class="profile__wrapper">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <div class="profile__item-name">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button type="button" class="button__reduction"></button>
+            </div>
             <p class="profile__text">Исследователь океана</p>
           </div>
-          <form class="profile__form-reduction">
-            <button type="button" class="button button__reduction"></button>
-          </form>
-        </li>
-        <li class="profile__item-add">
-          <form class="profile__form-add">
-            <button type="button" class="button button__add"></button>
-          </form>
-        </li>
-      </ul>
+          <button type="button" class="button__add"></button>
+        </div>
+      </div>
     </content>
 
     <section class="gallery">

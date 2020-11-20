@@ -1,0 +1,8 @@
+.profile__name-button {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

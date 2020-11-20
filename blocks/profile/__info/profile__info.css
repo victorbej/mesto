@@ -1,6 +1,5 @@
 .profile__info {
     display: flex;
-    list-style-type: none;
-    padding: 0;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
 }

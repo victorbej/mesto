@@ -25,7 +25,21 @@
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 @import url('../blocks/footer/__copyright-text/footer__copyright-text.css');
+@import url('../blocks/profile/__wrapper/profile__wrapper.css');
+@import url('../blocks/profile/__name-button/profile__name-button.css');
 @import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+@import url('');
+
 /* {
     border: 1px solid red;
 }
