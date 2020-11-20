@@ -1,0 +1,7 @@
+.button__reduction {
+  background-image: url("../../../images/Edit\ Button.svg");
+  width: 24px;
+  height: 24px;
+  background-color: black;
+  border: 1px solid #ffffff;
+}

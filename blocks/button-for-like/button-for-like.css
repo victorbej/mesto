@@ -1,0 +1,9 @@
+.button-for-like {
+    background-image: url('../../images/Vector.svg');
+    min-width: 21px;
+    min-height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    border: none;
+}

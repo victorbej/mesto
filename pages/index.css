@@ -5,16 +5,27 @@
 @import url('../blocks/logo/logo.css');
 @import url('../blocks/logo/__mesto/logo__mesto.css');
 @import url('../blocks/header/__line/header__line.css');
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/main/main.css');
+@import url('../blocks/profile/__title/profile__title.css');
+@import url('../blocks/profile/__text/profile__text.css');
+@import url('../blocks/button/__reduction/button__reduction.css');
+@import url('../blocks/button/button.css');
+@import url('../blocks/button/__add/button__add.css');
+@import url('../blocks/profile/__item-name/profile__item-name.css');
+@import url('../blocks/profile/__form-reduction/profile__form-reduction.css');
+@import url('../blocks/gallery/gallery.css');
+@import url('../blocks/gallery/__lists/gallery__lists.css');
+@import url('../blocks/gallery/__list/gallery__list.css');
+@import url('../blocks/gallery/__list-wrapper/gallery__list-wrapper.css');
+@import url('../blocks/gallery/__list-title/gallery__list-title.css');
+@import url('../blocks/button-for-like/button-for-like.css');
+@import url('../blocks/gallery/__list-image/gallery__list-image.css');
 @import url('');
 @import url('');
 @import url('');
 @import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
+/* {
+    border: 1px solid red;
+}

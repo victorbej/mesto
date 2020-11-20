@@ -1,17 +1,98 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 </head>
+
 <body class="page">
-    <header class="header">
-        <div class="logo">
-            <img src="./images/logo.svg" class="logo__mesto" alt="Место">
-        </div>
-        <div class="header__line"></div>
-    </header>
+  <header class="header">
+    <div class="logo">
+      <img src="./images/logo.svg" class="logo__mesto" alt="Место">
+    </div>
+    <div class="header__line"></div>
+  </header>
+  <main class="main">
+    <content class="profile">
+      <ul class="profile__info">
+        <li class="profile__item-img"><img src="./images/Avatar.png" class="profile__image" alt="Фото исследователя">
+        </li>
+        <li class="profile__item-name">
+          <div class="profile__wrapper">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <p class="profile__text">Исследователь океана</p>
+          </div>
+          <form class="profile__form-reduction">
+            <button type="button" class="button button__reduction"></button>
+          </form>
+        </li>
+        <li class="profile__item-add">
+          <form class="profile__form-add">
+            <button type="button" class="button button__add"></button>
+          </form>
+        </li>
+      </ul>
+    </content>
+
+    <section class="gallery">
+
+      <ul class="gallery__lists">
+
+        <li class="gallery__list">
+          <img src="./images/kirill-pershin-1088404-unsplash.png" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Карачаевск</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+        <li class="gallery__list">
+          <img src="./images/kirill-pershin-1404681-unsplash.png" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Гора Эльбрус</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+        <li class="gallery__list">
+          <img src="./images/kirill-pershin-1556355-unsplash.png" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Домбай</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+        <li class="gallery__list">
+          <img src="./images/juvnsky-anton-maksimov-fz_mNcRzhYM-unsplash.jpg" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Архыз</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+        <li class="gallery__list">
+          <img src="./images/nick-night-Rlk65RvKG1U-unsplash.jpg" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Теберда</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+        <li class="gallery__list">
+          <img src="./images/vladislav-zakharevich-U78twAIz1Pk-unsplash.jpg" alt="" class="gallery__list-image">
+          <div class="gallery__list-wrapper">
+            <h2 class="gallery__list-title">Бадукские Озера</h2>
+            <button type="button" class="button-for-like">
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+  </main>
 </body>
+
 </html>

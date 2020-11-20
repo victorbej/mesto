@@ -1,0 +1,8 @@
+.button__add {
+  background-image: url("../../../images/Add\ Button.png");
+  width: 150px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  background-color: black;
+}
