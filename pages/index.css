@@ -22,9 +22,9 @@
 @import url('../blocks/gallery/__list-title/gallery__list-title.css');
 @import url('../blocks/button-for-like/button-for-like.css');
 @import url('../blocks/gallery/__list-image/gallery__list-image.css');
-@import url('');
-@import url('');
-@import url('');
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
+@import url('../blocks/footer/__copyright-text/footer__copyright-text.css');
 @import url('');
 /* {
     border: 1px solid red;
