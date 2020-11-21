@@ -6,3 +6,11 @@
   line-height: 48px;
   margin: 0;
 }
+
+@media (max-width: 580px) {
+  .profile__title {
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
+}
