@@ -1,4 +1,4 @@
-.button__reduction {
+.profile__reduction-button {
   background-image: url("../../../images/Edit\ Button.svg");
   width: 24px;
   height: 24px;
@@ -9,8 +9,14 @@
   margin-left: 18px;
 }
 
+.profile__reduction-button:hover {
+  cursor: pointer;
+  opacity: .6;
+  border: none;
+}
+
 @media (max-width: 580px) {
-  .button__reduction {
+  .profile__reduction-button {
     width: 18px;
     height: 18px;
     margin-left: 10px;
