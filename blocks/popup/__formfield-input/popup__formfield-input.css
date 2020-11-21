@@ -1,0 +1,13 @@
+.popup__formfield-input {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  min-width: 358px;
+  line-height: 17px;
+  margin-bottom: 30px;
+  border: none;
+  background-image: url('../../../images/Line\ 2.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}

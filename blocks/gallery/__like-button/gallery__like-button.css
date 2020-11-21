@@ -12,3 +12,7 @@
     opacity: .5;
     cursor: pointer;
 }
+
+.gallery__like-button:active {
+    background-image: url('../../../images/Union.png');
+}
