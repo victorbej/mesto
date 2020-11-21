@@ -5,3 +5,10 @@
   font-style: normal;
   font-weight: 900;
 }
+
+@media (max-width: 580px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
