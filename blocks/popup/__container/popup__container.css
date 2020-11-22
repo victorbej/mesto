@@ -1,4 +1,4 @@
-.popup__banner {
+.popup__container {
   background: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 580px) {
-  .popup__banner {
+  .popup__container {
     max-width: 282px;
   }
 }
