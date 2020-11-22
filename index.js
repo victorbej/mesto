@@ -15,7 +15,7 @@ function deactivateReductionButton() {
 };
 
 let profileTitle = document.querySelector('.profile__title');
-profileTitle.innerHTML = 'Жак-Ив Кусто'
+// profileTitle.innerHTML = 'Жак-Ив Кусто'
 
 let profileText = document.querySelector('.profile__text');
 profileText.innerHTML = 'Исследователь океана';
@@ -37,6 +37,12 @@ function formSubmitHandler (evt) {
     console.log(name.value);
     console.log(job.value);// Получите значение полей из свойства value
 
+    profileText.insertAdjacentHTML('beforeend', 
+    
+    `<h1 class="profile__title">${name.value}</h1>`);
+
+    name.value = 'Жак-Ив Кусто';
+    
     // Выберите элементы, куда должны быть вставлены значения полей
 
     profileTitle.textContent = name.value
@@ -46,3 +52,6 @@ function formSubmitHandler (evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
+
+let saveButton = document.querySelector('.profile__save-button');
+saveButton.addEventListener('click', formElement);
