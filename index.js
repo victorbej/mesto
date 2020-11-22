@@ -14,6 +14,12 @@ function deactivateReductionButton() {
     popup.classList.remove('popup_opened');
 };
 
+let profileTitle = document.querySelector('.profile__title');
+profileTitle.innerHTML = 'Жак-Ив Кусто'
+
+let profileText = document.querySelector('.profile__text');
+profileText.innerHTML = 'Исследователь океана';
+
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__container') // Воспользуйтесь методом querySelector()
 
@@ -28,12 +34,13 @@ function formSubmitHandler (evt) {
     let name = document.querySelector('.popup__formfield-input_name'); // Воспользуйтесь инструментом .querySelector()
     let job = document.querySelector('.popup__formfield-input_job');// Воспользуйтесь инструментом .querySelector()
 
-    name.value = '';
-    job.value = '';// Получите значение полей из свойства value
+    console.log(name.value);
+    console.log(job.value);// Получите значение полей из свойства value
 
     // Выберите элементы, куда должны быть вставлены значения полей
 
-    // Вставьте новые значения с помощью textContent
+    profileTitle.textContent = name.value
+    profileText.textContent = job.value// Вставьте новые значения с помощью textContent
 }
 
 // Прикрепляем обработчик к форме:
