@@ -4,6 +4,7 @@
   height: 24px;
   background-color: transparent;
   background-size: contain;
+  background-repeat: no-repeat;
   border: 1px solid #ffffff;
   box-sizing: border-box;
   margin-left: 18px;
