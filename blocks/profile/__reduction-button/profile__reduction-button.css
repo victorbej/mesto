@@ -2,17 +2,20 @@
   background-image: url("../../../images/Edit\ Button.svg");
   width: 24px;
   height: 24px;
-  background-color: black;
+  background-color: transparent;
   background-size: contain;
   border: 1px solid #ffffff;
   box-sizing: border-box;
   margin-left: 18px;
+  cursor: pointer;
 }
 
 .profile__reduction-button:hover {
-  cursor: pointer;
   opacity: .6;
-  border: none;
+}
+
+.profile__reduction-button:focus {
+  outline: none;
 }
 
 @media (max-width: 580px) {

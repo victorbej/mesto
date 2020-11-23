@@ -9,11 +9,15 @@
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .popup__close-button:hover {
-  cursor: pointer;
   opacity: 0.8;
+}
+
+.popup__close-button:focus {
+  outline: none;
 }
 
 @media (max-width: 580px) {
