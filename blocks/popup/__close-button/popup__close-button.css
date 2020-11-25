@@ -2,7 +2,7 @@
   position: absolute;
   right: -30px;
   top: -32px;
-  background-image: url("../../../images/Close\ Icon.png");
+  background-image: url("../../../images/Close\ Icon.svg");
   width: 40px;
   height: 40px;
   background-size: contain;
@@ -13,7 +13,7 @@
 }
 
 .popup__close-button:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .popup__close-button:focus {
