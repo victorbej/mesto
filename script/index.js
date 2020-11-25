@@ -11,20 +11,13 @@ const popupSaveButton = document.querySelector('.popup__save-button');
 
 function activateReductionButton() {
     popup.classList.add('popup_opened');
+    profileTitleInput.value = profileTitle.textContent;
+    profileTextInput.value = profileText.textContent;
 };
 
 function deactivateReductionButton() {
     popup.classList.remove('popup_opened');
 };
-
-function deactivateSaveButton() {
-    popup.classList.remove('popup_opened');
-};
-
-function insertProfileInfo () {
-    profileTitleInput.value = profileTitle.textContent;
-    profileTextInput.value = profileText.textContent;
-}
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
@@ -32,9 +25,7 @@ function formSubmitHandler (evt) {
     profileText.textContent = profileTextInput.value;
 }
 
-
-insertProfileInfo();
+popupSaveButton.addEventListener('click', deactivateReductionButton);
 popupCloseButton.addEventListener('click', deactivateReductionButton);
 popupReductionButton.addEventListener('click', activateReductionButton); 
-popupSaveButton.addEventListener('click', deactivateSaveButton);
 formElement.addEventListener('submit', formSubmitHandler);
