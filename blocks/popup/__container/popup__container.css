@@ -5,10 +5,12 @@
   max-width: 430px;
   position: relative;
   box-sizing: border-box;
+  padding: 35px;
 }
 
 @media (max-width: 580px) {
   .popup__container {
     max-width: 282px;
+    padding: 20px;
   }
 }

@@ -13,27 +13,22 @@
   <div class="page">
 
     <header class="header">
-      <div class="logo">
-        <img src="./images/logo.svg" class="logo__mesto" alt="Место">
-      </div>
-      <div class="header__line"></div>
+      <img src="./images/logo.svg" class="header__mesto" alt="Место">
     </header>
 
     <main class="main">
 
       <section class="profile">
-        <div class="profile__info">
-          <img src="./images/Avatar.png" class="profile__image" alt="Фото исследователя">
-          <div class="profile__name-button">
-            <div class="profile__wrapper">
-              <div class="profile__item-name">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__reduction-button"></button>
-              </div>
-              <p class="profile__text">Исследователь океана</p>
+        <img src="./images/Avatar.png" class="profile__image" alt="Фото исследователя">
+        <div class="profile__name-button">
+          <div class="profile__wrapper">
+            <div class="profile__item-name">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__reduction-button"></button>
             </div>
-            <button type="button" class="profile__add-button"></button>
+            <p class="profile__text">Исследователь океана</p>
           </div>
+          <button type="button" class="profile__add-button"></button>
         </div>
       </section>
 
@@ -82,7 +77,8 @@
           </li>
 
           <li class="gallery__list">
-            <img src="./images/vladislav-zakharevich-U78twAIz1Pk-unsplash.jpg" alt="Бадукские Озера" class="gallery__list-image">
+            <img src="./images/vladislav-zakharevich-U78twAIz1Pk-unsplash.jpg" alt="Бадукские Озера"
+              class="gallery__list-image">
             <div class="gallery__list-wrapper">
               <h2 class="gallery__list-title">Бадукские Озера</h2>
               <button type="button" class="gallery__like-button"></button>
@@ -95,22 +91,18 @@
     </main>
 
     <footer class="footer">
-      <div class="footer__copyright">
-        <p class="footer__copyright-text">&copy; 2020 Mesto Russia</p>
-      </div>
+      <p class="footer__copyright-text">&copy; 2020 Mesto Russia</p>
     </footer>
 
     <div class="popup">
       <div class="popup__container">
-        <div class="popup__wrapper">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <button type="button" class="popup__close-button"></button>
-          <form class="popup__formfield">
-            <input type="text" class="popup__formfield-input popup__formfield-input_name">
-            <input type="text" class="popup__formfield-input popup__formfield-input_job">
-            <button type="submit" class="popup__save-button">Сохранить</button>
-          </form>
-        </div>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <button type="button" class="popup__close-button"></button>
+        <form class="popup__formfield" name="isert-formfield">
+          <input type="text" name="insert-name" class="popup__formfield-input popup__formfield-input_name">
+          <input type="text" name="insert-job" class="popup__formfield-input popup__formfield-input_job">
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
       </div>
     </div>
   </div>

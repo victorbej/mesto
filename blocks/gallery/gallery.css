@@ -3,3 +3,9 @@
     flex-direction: column;
     margin-bottom: 50px;
 }
+
+@media (max-width: 580px) {
+    .gallery {
+        margin-bottom: 48px;
+    }
+} 
