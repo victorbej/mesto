@@ -7,7 +7,6 @@ const profileTitleInput = document.querySelector('.popup__formfield-input_name')
 const profileTextInput = document.querySelector('.popup__formfield-input_job');
 const formElement = document.querySelector('.popup__container');
 const popupEdit = document.querySelector('.popup__edit');
-const popupSaveButton = document.querySelector('.popup__save-button');
 
 function activateReductionButton() {
     popup.classList.add('popup_opened');
@@ -23,9 +22,9 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileTitle.textContent = profileTitleInput.value;
     profileText.textContent = profileTextInput.value;
+    popup.classList.remove('popup_opened');
 }
 
-popupSaveButton.addEventListener('click', deactivateReductionButton);
 popupCloseButton.addEventListener('click', deactivateReductionButton);
 popupReductionButton.addEventListener('click', activateReductionButton); 
 formElement.addEventListener('submit', formSubmitHandler);
