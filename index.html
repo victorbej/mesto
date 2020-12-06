@@ -33,57 +33,8 @@
       </section>
 
       <section class="gallery">
-
         <ul class="gallery__lists">
 
-          <li class="gallery__list">
-            <img src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Карачаевск</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
-
-          <li class="gallery__list">
-            <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Гора Эльбрус</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
-
-          <li class="gallery__list">
-            <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Домбай</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
-
-          <li class="gallery__list">
-            <img src="./images/juvnsky-anton-maksimov-fz_mNcRzhYM-unsplash.jpg" alt="Архыз" class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Архыз</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
-
-          <li class="gallery__list">
-            <img src="./images/nick-night-Rlk65RvKG1U-unsplash.jpg" alt="Теберда" class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Теберда</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
-
-          <li class="gallery__list">
-            <img src="./images/vladislav-zakharevich-U78twAIz1Pk-unsplash.jpg" alt="Бадукские Озера"
-              class="gallery__list-image">
-            <div class="gallery__list-wrapper">
-              <h2 class="gallery__list-title">Бадукские Озера</h2>
-              <button type="button" class="gallery__like-button"></button>
-            </div>
-          </li>
 
         </ul>
       </section>
@@ -94,18 +45,48 @@
       <p class="footer__copyright-text">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <div class="popup__container">
+    <div class="popup popup_reduction-window">
+      <div class="popup__container popup__container_profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button type="button" class="popup__close-button"></button>
         <form class="popup__formfield" name="isert-formfield">
-          <input type="text" name="insert-name" class="popup__formfield-input popup__formfield-input_name">
-          <input type="text" name="insert-job" class="popup__formfield-input popup__formfield-input_job">
+          <input type="text" name="insert-name" class="popup__formfield-input popup__formfield-input_name"
+            placeholder="Имя">
+          <input type="text" name="insert-job" class="popup__formfield-input popup__formfield-input_job"
+            placeholder="О себе">
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class="popup popup_initial-cards-window">
+      <div class="popup__container popup__container_place">
+        <h2 class="popup__title">Новое место</h2>
+        <button type="button" class="popup__close-button"></button>
+        <form class="popup__formfield" name="isert-formfield">
+          <input type="text" name="insert-place" class="popup__formfield-input popup__formfield-input_place"
+            placeholder="Место">
+          <input type="text" name="insert-link" class="popup__formfield-input popup__formfield-input_link"
+            placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
   </div>
+
+
+  <template id="temp">
+    <li class="gallery__list">
+      <img src="example.png" alt="Картинка" class="gallery__list-image">
+      <div class="gallery__list-wrapper">
+        <h2 class="gallery__list-title"></h2>
+        <button type="button" class="gallery__like-button"></button>
+      </div>
+    </li>
+  </template>
+
+
   <script src="./script/index.js"></script>
 
 </body>
