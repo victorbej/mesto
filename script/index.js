@@ -86,6 +86,9 @@ function composeItem(item) {
     const linkElement = tempElement.querySelector('.gallery__list-image');
     headerElement.textContent = item.name;
     linkElement.src = item.link;
+    tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('gallery__like-button_active');
+      });
     return tempElement;
 }
 
