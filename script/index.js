@@ -108,7 +108,7 @@ function addDeleteListenerToItem(item){
 }
 
 function deleteItem(event){
-    const targetItem = event.target.closest('.gallery__list_delete');
+    const targetItem = event.target.closest('.gallery__list');
     targetItem.remove();
 }
 
