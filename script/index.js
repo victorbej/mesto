@@ -12,6 +12,8 @@ const popupInitialCardsWindow = document.querySelector('.popup_initial-cards-win
 const popupAddButton = document.querySelector('.profile__add-button');
 const popupAddButtonClose = popupInitialCardsWindow.querySelector('.popup__close-button');
 const formElementPlace = popupInitialCardsWindow.querySelector('.popup__container_place');
+const inputTextName = popupInitialCardsWindow.querySelector('.popup__formfield-input popup__formfield-input_place');
+const inputTextLink = popupInitialCardsWindow.querySelector('.popup__formfield-input popup__formfield-input_link');
 
 const galleryLists = document.querySelector('.gallery__lists');
 const inputPlace = document.querySelector('.popup__formfield-input_place');
@@ -72,6 +74,12 @@ function formSubmitHandler(evt) {
 
 function formSubmitHandlerCards(evt) {
     evt.preventDefault();
+    const inputTextName = inputPlace.value;
+    const inputTextLink = inputLink.value;
+    const item = composeItem({ link: inputTextLink, name: inputTextName })
+    galleryLists.prepend(item);
+    inputPlace.value = '';
+    inputLink.value = '';
     popupInitialCardsWindow.classList.remove('popup_opened');
 }
 
@@ -88,8 +96,20 @@ function composeItem(item) {
     linkElement.src = item.link;
     tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('gallery__like-button_active');
-      });
+    });
+    addDeleteListenerToItem(tempElement);
     return tempElement;
+}
+
+
+function addDeleteListenerToItem(item){       
+    const removeButton = item.querySelector('.gallery__delete-button');
+     removeButton.addEventListener('click', deleteItem);
+}
+
+function deleteItem(event){
+    const targetItem = event.target.closest('.gallery__list_delete');
+    targetItem.remove();
 }
 
 popupCloseButton.addEventListener('click', deactivateReductionButton);
