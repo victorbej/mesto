@@ -20,6 +20,14 @@ const inputPlace = document.querySelector('.popup__formfield-input_place');
 const inputLink = document.querySelector('.popup__formfield-input_link');
 const templateNode = document.querySelector('#temp');
 
+const popupBigWindow = document.querySelector('.popup_big-window-picture');
+const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button');
+const pictureItem = popupBigWindow.querySelector('.popup__picture');
+const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
+
+
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -46,6 +54,20 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+
+function activatepopupBigWindow() {
+    popupBigWindow.classList.add('popup_opened');
+};
+
+function deactivateBigWindow() {
+    popupBigWindow.classList.remove('popup_opened');
+};
+
+function packBigWindow(item) {
+    pictureItem.src = item.link;
+    pictureTextItem.textContent = item.name;
+}
 
 function activateReductionButton() {
     popupReductionWindow.classList.add('popup_opened');
@@ -76,7 +98,7 @@ function formSubmitHandlerCards(evt) {
     evt.preventDefault();
     const inputTextName = inputPlace.value;
     const inputTextLink = inputLink.value;
-    const item = composeItem({ link: inputTextLink, name: inputTextName })
+    const item = composeItem({ name: inputTextName, link: inputTextLink })
     galleryLists.prepend(item);
     inputPlace.value = '';
     inputLink.value = '';
@@ -97,21 +119,26 @@ function composeItem(item) {
     tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('gallery__like-button_active');
     });
+    linkElement.addEventListener('click', () => {
+        packBigWindow(item);
+        activatepopupBigWindow();
+    });
     addDeleteListenerToItem(tempElement);
     return tempElement;
 }
 
 
-function addDeleteListenerToItem(item){       
+function addDeleteListenerToItem(item) {
     const removeButton = item.querySelector('.gallery__delete-button');
-     removeButton.addEventListener('click', deleteItem);
+    removeButton.addEventListener('click', deleteItem);
 }
 
-function deleteItem(event){
+function deleteItem(event) {
     const targetItem = event.target.closest('.gallery__list');
     targetItem.remove();
 }
 
+bigWindowCloseButton.addEventListener('click', deactivateBigWindow);
 popupCloseButton.addEventListener('click', deactivateReductionButton);
 popupAddButtonClose.addEventListener('click', deactivateAddButton);
 popupAddButton.addEventListener('click', activateAddButton);
