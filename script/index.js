@@ -3,6 +3,7 @@ const profileText = document.querySelector('.profile__text');
 const profileTitleInput = document.querySelector('.popup__formfield-input_name');
 const profileTextInput = document.querySelector('.popup__formfield-input_job');
 
+const popup = document.querySelector('.popup');
 const popupReductionWindow = document.querySelector('.popup_reduction-window');
 const popupCloseButton = document.querySelector('.popup__close-button');
 const popupReductionButton = document.querySelector('.profile__reduction-button');
@@ -24,9 +25,6 @@ const popupBigWindow = document.querySelector('.popup_big-window-picture');
 const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button');
 const pictureItem = popupBigWindow.querySelector('.popup__picture');
 const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
-
-
-
 
 const initialCards = [
     {
@@ -55,13 +53,17 @@ const initialCards = [
     }
 ];
 
+function popupOpen(popup) {
+    popup.classList.add('popup_opened');
+}
 
-function activatepopupBigWindow() {
-    popupBigWindow.classList.add('popup_opened');
-};
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
 
-function deactivateBigWindow() {
-    popupBigWindow.classList.remove('popup_opened');
+function packReductionButton() {
+    profileTitleInput.value = profileTitle.textContent;
+    profileTextInput.value = profileText.textContent;
 };
 
 function packBigWindow(item) {
@@ -69,23 +71,37 @@ function packBigWindow(item) {
     pictureTextItem.textContent = item.name;
 }
 
-function activateReductionButton() {
-    popupReductionWindow.classList.add('popup_opened');
-    profileTitleInput.value = profileTitle.textContent;
-    profileTextInput.value = profileText.textContent;
-};
+function addDeleteListenerToItem(item) {
+    const removeButton = item.querySelector('.gallery__delete-button');
+    removeButton.addEventListener('click', deleteItem);
+}
 
-function deactivateReductionButton() {
-    popupReductionWindow.classList.remove('popup_opened');
-};
+function deleteItem(event) {
+    const targetItem = event.target.closest('.gallery__list');
+    targetItem.remove();
+}
 
-function activateAddButton() {
-    popupInitialCardsWindow.classList.add('popup_opened');
-};
+function composeItem(item) {
+    const tempElement = templateNode.content.cloneNode(true);
+    const headerElement = tempElement.querySelector('.gallery__list-title');
+    const linkElement = tempElement.querySelector('.gallery__list-image');
+    headerElement.textContent = item.name;
+    linkElement.src = item.link;
+    tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('gallery__like-button_active');
+    });
+    linkElement.addEventListener('click', () => {
+        packBigWindow(item);
+        popupOpen(popupBigWindow);
+    });
+    addDeleteListenerToItem(tempElement);
+    return tempElement;
+}
 
-function deactivateAddButton() {
-    popupInitialCardsWindow.classList.remove('popup_opened');
-};
+function renderList() {
+    const listItems = initialCards.map(composeItem);
+    galleryLists.append(...listItems);
+}
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -105,44 +121,17 @@ function formSubmitHandlerCards(evt) {
     popupInitialCardsWindow.classList.remove('popup_opened');
 }
 
-function renderList() {
-    const listItems = initialCards.map(composeItem);
-    galleryLists.append(...listItems);
-}
+popupReductionButton.addEventListener('click', () => {
+    popupOpen(popupReductionWindow);
+    packReductionButton()
+})
 
-function composeItem(item) {
-    const tempElement = templateNode.content.cloneNode(true);
-    const headerElement = tempElement.querySelector('.gallery__list-title');
-    const linkElement = tempElement.querySelector('.gallery__list-image');
-    headerElement.textContent = item.name;
-    linkElement.src = item.link;
-    tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('gallery__like-button_active');
-    });
-    linkElement.addEventListener('click', () => {
-        packBigWindow(item);
-        activatepopupBigWindow();
-    });
-    addDeleteListenerToItem(tempElement);
-    return tempElement;
-}
+popupAddButton.addEventListener('click', () => popupOpen(popupInitialCardsWindow));
+popupCloseButton.addEventListener('click', () => closePopup(popupReductionWindow));
+popupAddButtonClose.addEventListener('click', () => closePopup(popupInitialCardsWindow));
+bigWindowCloseButton.addEventListener('click', () => closePopup(popupBigWindow));
 
-
-function addDeleteListenerToItem(item) {
-    const removeButton = item.querySelector('.gallery__delete-button');
-    removeButton.addEventListener('click', deleteItem);
-}
-
-function deleteItem(event) {
-    const targetItem = event.target.closest('.gallery__list');
-    targetItem.remove();
-}
-
-bigWindowCloseButton.addEventListener('click', deactivateBigWindow);
-popupCloseButton.addEventListener('click', deactivateReductionButton);
-popupAddButtonClose.addEventListener('click', deactivateAddButton);
-popupAddButton.addEventListener('click', activateAddButton);
-popupReductionButton.addEventListener('click', activateReductionButton);
 formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementPlace.addEventListener('submit', formSubmitHandlerCards);
+
 renderList();
