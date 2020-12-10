@@ -68,6 +68,7 @@ function packReductionButton() {
 
 function packBigWindow(item) {
     pictureItem.src = item.link;
+    pictureItem.alt = item.name;
     pictureTextItem.textContent = item.name;
 }
 
@@ -77,8 +78,7 @@ function addDeleteListenerToItem(item) {
 }
 
 function deleteItem(event) {
-    const targetItem = event.target.closest('.gallery__list');
-    targetItem.remove();
+    event.target.closest('.gallery__list').remove();
 }
 
 function composeItem(item) {
@@ -87,6 +87,7 @@ function composeItem(item) {
     const linkElement = tempElement.querySelector('.gallery__list-image');
     headerElement.textContent = item.name;
     linkElement.src = item.link;
+    linkElement.alt = item.name;
     tempElement.querySelector('.gallery__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('gallery__like-button_active');
     });
@@ -107,7 +108,7 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     profileTitle.textContent = profileTitleInput.value;
     profileText.textContent = profileTextInput.value;
-    popupReductionWindow.classList.remove('popup_opened');
+    closePopup(popupReductionWindow);
 }
 
 function formSubmitHandlerCards(evt) {
@@ -118,7 +119,7 @@ function formSubmitHandlerCards(evt) {
     galleryLists.prepend(item);
     inputPlace.value = '';
     inputLink.value = '';
-    popupInitialCardsWindow.classList.remove('popup_opened');
+    closePopup(popupInitialCardsWindow);
 }
 
 popupReductionButton.addEventListener('click', () => {
