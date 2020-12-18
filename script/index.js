@@ -26,6 +26,8 @@ const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button'
 const pictureItem = popupBigWindow.querySelector('.popup__picture');
 const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
 
+const saveButtonDisabled = document.querySelector('.popup__save-button_disabled');
+
 const initialCards = [
     {
         name: 'Архыз',

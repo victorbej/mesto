@@ -39,3 +39,6 @@
 @import url('../blocks/popup/_big-window-picture/popup_big-window-picture.css');
 @import url('../blocks/popup/__close-button/_window/popup__close-button_window.css');
 @import url('../blocks/popup/__container/_place/popup__container_place.css');
+@import url('../blocks/error/error.css');
+@import url('../blocks/popup/__input-warapper/popup__input-warapper.css');
+@import url('../blocks/popup/__formfield-input/_error/popup__formfield-input_error.css');
