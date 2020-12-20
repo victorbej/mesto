@@ -57,10 +57,18 @@ const initialCards = [
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', addKeyDownEsc);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', addKeyDownEsc);
+}
+
+function addKeyDownEsc(evt) {
+    if (evt.keyCode === 27) {
+        closePopup(document.querySelector('.popup_opened'));
+    }
 }
 
 function packReductionButton() {
