@@ -58,17 +58,25 @@ const initialCards = [
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', addKeyDownEsc);
+    document.addEventListener('mousedown', addMouseDownClosePopup);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.addEventListener('keydown', addKeyDownEsc);
+    document.addEventListener('mousedown', addMouseDownClosePopup);
 }
 
-function addKeyDownEsc(evt) {
-    if (evt.keyCode === 27) {
+function addKeyDownEsc(e) {
+    if (e.keyCode === 27) {
         closePopup(document.querySelector('.popup_opened'));
     }
+}
+
+function addMouseDownClosePopup(e) {
+    if (e.which === 1 && e.target.classList.contains('popup')) {
+        closePopup(e.target.closest('.popup_opened'))
+    };
 }
 
 function packReductionButton() {
