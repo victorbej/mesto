@@ -20,12 +20,24 @@ function checkInputValidity(form, input, config) {
   }
 }
 
+function setButtonState(button, isActive, config) {
+  if (isActive) {
+      button.classList.remove(config.buttonInvalidClass);
+      button.disabled = false;
+  } else {
+      button.classList.add(config.buttonInvalidClass);
+      button.disabled = true; 
+  }
+}
+
 function setEventListeners(form, config) {
   const inputsList = form.querySelectorAll(config.inputSelector);
+  const submitButton = form.querySelector(config.submitButtonSelector);
 
   inputsList.forEach((input) => {
     input.addEventListener('input', () => {
       checkInputValidity(form, input, config);
+      setButtonState(submitButton, form.checkValidity(), config);
     });
   });
 }
@@ -34,13 +46,23 @@ function enableValidation(config) {
   const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((form) => {
     setEventListeners(form, config);
+
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      console.log('отправка формы');
+  });
+
+  const submitButton = form.querySelector(config.submitButtonSelector);
+  setButtonState(submitButton, form.checkValidity(), config)
   });
 }
 
 const validationConfig = {
   formSelector: '.popup__formfield',
   inputSelector: '.popup__formfield-input',
-  inputInvalidClass: 'popup__formfield-input_error'
+  inputInvalidClass: 'popup__formfield-input_error',
+  submitButtonSelector: '.popup__save-button',
+  buttonInvalidClass: 'popup__save-button_invalid'
 };
 
 enableValidation(validationConfig);
