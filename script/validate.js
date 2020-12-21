@@ -10,6 +10,7 @@ function hideError(form, input, config) {
   input.classList.remove(config.inputInvalidClass);
 }
 
+
 function checkInputValidity(form, input, config) {
   input.setCustomValidity('');
 
@@ -22,11 +23,11 @@ function checkInputValidity(form, input, config) {
 
 function setButtonState(button, isActive, config) {
   if (isActive) {
-      button.classList.remove(config.buttonInvalidClass);
-      button.disabled = false;
+    button.classList.remove(config.buttonInvalidClass);
+    button.disabled = false;
   } else {
-      button.classList.add(config.buttonInvalidClass);
-      button.disabled = true; 
+    button.classList.add(config.buttonInvalidClass);
+    button.disabled = true;
   }
 }
 
@@ -50,11 +51,19 @@ function enableValidation(config) {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       console.log('отправка формы');
-  });
+    });
 
-  const submitButton = form.querySelector(config.submitButtonSelector);
-  setButtonState(submitButton, form.checkValidity(), config)
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    setButtonState(submitButton, form.checkValidity(), config)
   });
+}
+
+function toResetValididation(popup, config) {
+  const renderedForm = popup.querySelector(config.formSelector);
+  const renderedInput = renderedForm.querySelectorAll(config.inputSelector);
+  renderedInput.forEach((input) => {
+    hideError(renderedForm, input, config);
+  })
 }
 
 const validationConfig = {
@@ -66,3 +75,4 @@ const validationConfig = {
 };
 
 enableValidation(validationConfig);
+// Render of "enableValidation(validationConfig);" added to "packReductionButton()"

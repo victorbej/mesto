@@ -28,6 +28,7 @@ const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
 
 const saveButtonDisabled = document.querySelector('.popup__save-button_disabled');
 
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -65,6 +66,9 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.addEventListener('keydown', addKeyDownEsc);
     document.addEventListener('mousedown', addMouseDownClosePopup);
+    if (popup.querySelector('.popup__formfield')) {
+        toResetValididation(popup, validationConfig);
+    }
 }
 
 function addKeyDownEsc(e) {
@@ -82,6 +86,7 @@ function addMouseDownClosePopup(e) {
 function packReductionButton() {
     profileTitleInput.value = profileTitle.textContent;
     profileTextInput.value = profileText.textContent;
+    enableValidation(validationConfig);
 };
 
 function packBigWindow(item) {
