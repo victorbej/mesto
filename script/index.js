@@ -26,6 +26,9 @@ const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button'
 const pictureItem = popupBigWindow.querySelector('.popup__picture');
 const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
 
+const saveButtonDisabled = document.querySelector('.popup__save-button_disabled');
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -55,15 +58,35 @@ const initialCards = [
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', addKeyDownEsc);
+    document.addEventListener('mousedown', addMouseDownClosePopup);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', addKeyDownEsc);
+    document.addEventListener('mousedown', addMouseDownClosePopup);
+    if (popup.querySelector('.popup__formfield')) {
+        toResetValididation(popup, validationConfig);
+    }
+}
+
+function addKeyDownEsc(e) {
+    if (e.keyCode === 27) {
+        closePopup(document.querySelector('.popup_opened'));
+    }
+}
+
+function addMouseDownClosePopup(e) {
+    if (e.which === 1 && e.target.classList.contains('popup')) {
+        closePopup(e.target.closest('.popup_opened'))
+    };
 }
 
 function packReductionButton() {
     profileTitleInput.value = profileTitle.textContent;
     profileTextInput.value = profileText.textContent;
+    enableValidation(validationConfig);
 };
 
 function packBigWindow(item) {
