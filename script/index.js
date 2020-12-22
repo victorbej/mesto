@@ -72,13 +72,13 @@ function closePopup(popup) {
 }
 
 function addKeyDownEsc(e) {
-    if (e.keyCode === 27) {
+    if (e.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'));
     }
 }
 
 function addMouseDownClosePopup(e) {
-    if (e.which === 1 && e.target.classList.contains('popup')) {
+    if (e.target.classList.contains('popup')) {
         closePopup(e.target.closest('.popup_opened'))
     };
 }
@@ -142,6 +142,7 @@ function formSubmitHandlerCards(evt) {
     galleryLists.prepend(item);
     inputPlace.value = '';
     inputLink.value = '';
+    enableValidation(validationConfig);
     closePopup(popupInitialCardsWindow);
 }
 
@@ -149,6 +150,7 @@ popupReductionButton.addEventListener('click', () => {
     popupOpen(popupReductionWindow);
     packReductionButton()
 })
+
 
 popupAddButton.addEventListener('click', () => popupOpen(popupInitialCardsWindow));
 popupCloseButton.addEventListener('click', () => closePopup(popupReductionWindow));
