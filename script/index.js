@@ -65,6 +65,7 @@ function popupOpen(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.addEventListener('keydown', addKeyDownEsc);
+    document.removeEventListener('keydown', addKeyDownEsc);
     document.addEventListener('mousedown', addMouseDownClosePopup);
     if (popup.querySelector('.popup__formfield')) {
         toResetValididation(popup, validationConfig);
