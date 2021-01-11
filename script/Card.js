@@ -29,6 +29,7 @@ const initialCards = [
 const popupBigWindow = document.querySelector('.popup_big-window-picture');
 const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button');
 const pictureItem = popupBigWindow.querySelector('.popup__picture');
+const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
 
 
 class Card {
@@ -56,11 +57,13 @@ class Card {
     }
     _handleOpenPopup() {
         pictureItem.src = this._link;
+        pictureTextItem.textContent = this._name;
         popupBigWindow.classList.add('popup_opened');
     }
 
     _handleClosePopup() {
         pictureItem.src = '';
+        pictureItem.textContent = '';
         popupBigWindow.classList.remove('popup_opened');
     }
     _setEventListeners() {
