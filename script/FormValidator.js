@@ -74,4 +74,3 @@ const validationConfig = {
 };
 
 enableValidation(validationConfig);
-// Render of "enableValidation(validationConfig);" added to "packReductionButton()"
