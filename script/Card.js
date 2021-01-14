@@ -1,5 +1,5 @@
 import { pictureItem, pictureTextItem, popupBigWindow} from './variables.js';
-import { popupOpen, closePopup } from './index.js';
+import { popupOpen } from './index.js';
 export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
