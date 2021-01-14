@@ -1,43 +1,12 @@
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
-const popupBigWindow = document.querySelector('.popup_big-window-picture');
-const bigWindowCloseButton = popupBigWindow.querySelector('.popup__close-button');
-const pictureItem = popupBigWindow.querySelector('.popup__picture');
-const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
-
-
-class Card {
+import { pictureItem, pictureTextItem, popupBigWindow} from './variables.js';
+import { popupOpen, closePopup } from './index.js';
+export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-    }
+    };
+
     _getTemplate() {
         const cardElement = document
             .querySelector(this._cardSelector)
@@ -46,42 +15,43 @@ class Card {
             .cloneNode(true)
 
         return cardElement;
-    }
+    };
+
     generateCard() {
         this._element = this._getTemplate();
-        this._setEventListeners();
         this._element.querySelector('.gallery__list-title').textContent = this._name;
-        this._element.querySelector('.gallery__list-image').src = this._link;
+        this._picture = this._element.querySelector('.gallery__list-image');
+        this._picture.src = this._link;
+        this._picture.alt = this._name;
+
+        this._setEventListeners();
 
         return this._element;
-    }
+    };
+
+    _handleLikeCardClick() {
+        this._element.querySelector('.gallery__like-button').classList.toggle('gallery__like-button_active');
+    };
+
+    _handleDeleteCardClick() {
+        this._element.remove();
+    };
+
     _handleOpenPopup() {
         pictureItem.src = this._link;
         pictureTextItem.textContent = this._name;
-        popupBigWindow.classList.add('popup_opened');
-    }
+        popupOpen(popupBigWindow);
+    };
 
-    _handleClosePopup() {
-        pictureItem.src = '';
-        pictureItem.textContent = '';
-        popupBigWindow.classList.remove('popup_opened');
-    }
     _setEventListeners() {
-        this._element.addEventListener('click', () => {
-          this._handleOpenPopup();
+        this._element.querySelector('.gallery__like-button').addEventListener('click', () => {
+            this._handleLikeCardClick();
         });
-        bigWindowCloseButton.addEventListener('click', () => {
-          this._handleClosePopup();
-        })
-      }
-}
-initialCards.forEach((item) => {
-    const card = new Card(item, '.template');
-    const cardElement = card.generateCard();
-
-    document.querySelector('.gallery__lists').prepend(cardElement);
-});
-
-
-
-// export { initialCards };
+        this._element.querySelector('.gallery__delete-button').addEventListener('click', () => {
+            this._handleDeleteCardClick();
+        });
+        this._picture.addEventListener('click', () => {
+            this._handleOpenPopup();
+        });
+    };
+};
