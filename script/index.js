@@ -5,6 +5,7 @@ import { popupCloseButton } from './variables.js';
 import { profileTitle, profileText, profileTitleInput, profileTextInput, popupReductionButton, popupReductionWindow, formElementProfile } from './variables.js';
 import { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formElementPlace } from './variables.js';
 import { inputPlace, inputLink } from './variables.js';
+import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
@@ -16,10 +17,11 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addKeyDownEsc);
     document.removeEventListener('mousedown', addMouseDownClosePopup);
-    // if (popup.querySelector('.popup__formfield')) {
-    //     toResetValididation(popup, validationConfig);
-    // }
 };
+
+function toReset(popup) {
+    popup.querySelector('.popup__formfield').reset();
+}
 
 function addKeyDownEsc(e) {
     if (e.key === 'Escape') {
@@ -36,7 +38,6 @@ function addMouseDownClosePopup(e) {
 function packReductionButton() {
     profileTitleInput.value = profileTitle.textContent;
     profileTextInput.value = profileText.textContent;
-    // enableValidation(validationConfig);
 };
 
 function formSubmitHandler(evt) {
@@ -62,22 +63,33 @@ function toAddCard() {
     document.querySelector('.gallery__lists').prepend(createCard({ name: inputNamePlace, link: inputLinkPlace }, '#temp'));
 }
 
-function toAddCardFormSubmit() {
+function toAddCardFormSubmit(evt) {
+    evt.preventDefault();
     toAddCard();
     closePopup(popupInitialCardsWindow);
-    // enableValidation(validationConfig);
 }
 
 popupReductionButton.addEventListener('click', () => {
+    toReset(popupReductionWindow);
+    enablePopupProfile.toResetValididation();
     popupOpen(popupReductionWindow);
     packReductionButton();
 });
-popupAddButton.addEventListener('click', () => popupOpen(popupInitialCardsWindow));
+
+popupAddButton.addEventListener('click', () => {
+    toReset(popupInitialCardsWindow);
+    enablePopupAddCard.toResetValididation();
+    popupOpen(popupInitialCardsWindow)
+});
+
 popupAddButtonClose.addEventListener('click', () => closePopup(popupInitialCardsWindow));
 bigWindowCloseButton.addEventListener('click', () => closePopup(popupBigWindow));
 popupCloseButton.addEventListener('click', () => closePopup(popupReductionWindow));
 
 formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementPlace.addEventListener('submit', toAddCardFormSubmit);
+
+enablePopupProfile.enableValidation();
+enablePopupAddCard.enableValidation();
 
 export { popupOpen };

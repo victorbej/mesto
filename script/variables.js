@@ -21,7 +21,7 @@ const inputLink = document.querySelector('.popup__formfield-input_link');
 
 const popupCloseButton = document.querySelector('.popup__close-button');
 
-export { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formElementPlace};
+export { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formElementPlace };
 
 export { popupBigWindow, pictureTextItem, pictureItem, bigWindowCloseButton };
 
