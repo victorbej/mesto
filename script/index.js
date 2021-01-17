@@ -6,6 +6,7 @@ import { profileTitle, profileText, profileTitleInput, profileTextInput, popupRe
 import { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formElementPlace } from './variables.js';
 import { inputPlace, inputLink } from './variables.js';
 import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
+import { cardsContainer } from './variables.js';
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
@@ -54,20 +55,20 @@ function createCard(item) {
 };
 
 initialCards.forEach((item) => {
-    document.querySelector('.gallery__lists').prepend(createCard(item));
+    cardsContainer.prepend(createCard(item));
 });
 
 function toAddCard() {
     const inputNamePlace = inputPlace.value;
     const inputLinkPlace = inputLink.value;
-    document.querySelector('.gallery__lists').prepend(createCard({ name: inputNamePlace, link: inputLinkPlace }, '#temp'));
-}
+    cardsContainer.prepend(createCard({ name: inputNamePlace, link: inputLinkPlace }, '#temp'));
+};
 
 function toAddCardFormSubmit(evt) {
     evt.preventDefault();
     toAddCard();
     closePopup(popupInitialCardsWindow);
-}
+};
 
 popupReductionButton.addEventListener('click', () => {
     toReset(popupReductionWindow);

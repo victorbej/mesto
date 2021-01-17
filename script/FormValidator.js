@@ -6,7 +6,7 @@ export const validationConfig = {
   buttonInvalidClass: 'popup__save-button_invalid'
 };
 
-export class Validation {
+export class FormValidator {
   constructor(config, formSelector) {
     this._formSelector = formSelector;
     this._inputSelector = config.inputSelector;
@@ -71,7 +71,7 @@ export class Validation {
 
 };
 
-const enablePopupProfile = new Validation(validationConfig, '.popup__formfield_profile');
-const enablePopupAddCard = new Validation(validationConfig, '.popup__formfield_add-card');
+const enablePopupProfile = new FormValidator(validationConfig, '.popup__formfield_profile');
+const enablePopupAddCard = new FormValidator(validationConfig, '.popup__formfield_add-card');
 
 export { enablePopupProfile, enablePopupAddCard };
