@@ -1,5 +1,3 @@
-export const cardsContainer = document.querySelector('.gallery__lists');
-
 const popupBigWindow = document.querySelector('.popup_big-window-picture');
 const pictureItem = popupBigWindow.querySelector('.popup__picture');
 const pictureTextItem = popupBigWindow.querySelector('.popup__picture-text');
@@ -21,7 +19,7 @@ const formElementPlace = popupInitialCardsWindow.querySelector('.popup__containe
 const inputPlace = document.querySelector('.popup__formfield-input_place');
 const inputLink = document.querySelector('.popup__formfield-input_link');
 
-
+const cardsContainer = document.querySelector('.gallery__lists')
 
 const popupCloseButton = document.querySelector('.popup__close-button');
 
@@ -32,5 +30,7 @@ export { popupBigWindow, pictureTextItem, pictureItem, bigWindowCloseButton };
 export { profileTitle, profileText, profileTitleInput, profileTextInput, popupReductionButton, popupReductionWindow, formElementProfile };
 
 export { popupCloseButton };
+
+export { cardsContainer };
 
 export { inputPlace, inputLink };

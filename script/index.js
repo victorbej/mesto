@@ -9,17 +9,18 @@ import { inputPlace, inputLink } from './variables.js';
 import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
 import { cardsContainer } from './variables.js';
 
-const cards = new Section({
+
+const section = new Section({
     items: initialCards, renderer: (item) => { createCard(item) },
 }, cardsContainer);
 
 function createCard(item) {
     const card = new Card(item, '.template');
     const cardElement = card.generateCard();
-    cards.addItem(cardElement);
+    section.addItem(cardElement);
 };
 
-cards.renderer();
+section.renderer();
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
