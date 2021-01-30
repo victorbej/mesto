@@ -1,4 +1,4 @@
-import Section from './Section.js';
+
 import { initialCards } from './InitialCards.js';
 import { Card } from './Card.js';
 import { popupBigWindow, bigWindowCloseButton } from './variables.js';
@@ -8,19 +8,6 @@ import { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formEleme
 import { inputPlace, inputLink } from './variables.js';
 import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
 import { cardsContainer } from './variables.js';
-
-
-const section = new Section({
-    items: initialCards, renderer: (item) => { createCard(item) },
-}, cardsContainer);
-
-function createCard(item) {
-    const card = new Card(item, '.template');
-    const cardElement = card.generateCard();
-    section.addItem(cardElement);
-};
-
-section.renderer();
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
@@ -62,17 +49,7 @@ function formSubmitHandler(evt) {
     closePopup(popupReductionWindow);
 };
 
-function toAddCard() {
-    const inputNamePlace = inputPlace.value;
-    const inputLinkPlace = inputLink.value;
-    cardsContainer.prepend(createCard({ name: inputNamePlace, link: inputLinkPlace }, '#temp'));
-};
 
-function toAddCardFormSubmit(evt) {
-    evt.preventDefault();
-    toAddCard();
-    closePopup(popupInitialCardsWindow);
-};
 
 popupReductionButton.addEventListener('click', () => {
     toReset(popupReductionWindow);
