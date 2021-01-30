@@ -1,4 +1,3 @@
-
 import { initialCards } from './InitialCards.js';
 import { Card } from './Card.js';
 import { popupBigWindow, bigWindowCloseButton } from './variables.js';
@@ -49,7 +48,27 @@ function formSubmitHandler(evt) {
     closePopup(popupReductionWindow);
 };
 
+function createCard(item) {
+    const card = new Card(item, '.template');
+    const cardElement = card.generateCard();
+    return cardElement;
+};
 
+initialCards.forEach((item) => {
+    cardsContainer.prepend(createCard(item));
+});
+
+function toAddCard() {
+    const inputNamePlace = inputPlace.value;
+    const inputLinkPlace = inputLink.value;
+    cardsContainer.prepend(createCard({ name: inputNamePlace, link: inputLinkPlace }, '#temp'));
+};
+
+function toAddCardFormSubmit(evt) {
+    evt.preventDefault();
+    toAddCard();
+    closePopup(popupInitialCardsWindow);
+};
 
 popupReductionButton.addEventListener('click', () => {
     toReset(popupReductionWindow);
