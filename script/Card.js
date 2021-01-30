@@ -1,4 +1,4 @@
-import { pictureItem, pictureTextItem, popupBigWindow} from './variables.js';
+import { pictureItem, pictureTextItem, popupBigWindow } from './variables.js';
 import { popupOpen } from './index.js';
 
 export class Card {
@@ -55,5 +55,5 @@ export class Card {
             this._handleOpenPopup();
         });
     };
-    
+
 };

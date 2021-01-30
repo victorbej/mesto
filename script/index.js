@@ -1,3 +1,4 @@
+import Section from './Section.js';
 import { initialCards } from './InitialCards.js';
 import { Card } from './Card.js';
 import { popupBigWindow, bigWindowCloseButton } from './variables.js';
@@ -7,6 +8,18 @@ import { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formEleme
 import { inputPlace, inputLink } from './variables.js';
 import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
 import { cardsContainer } from './variables.js';
+
+const cards = new Section({
+    items: initialCards, renderer: (item) => { createCard(item) },
+}, cardsContainer);
+
+function createCard(item) {
+    const card = new Card(item, '.template');
+    const cardElement = card.generateCard();
+    cards.addItem(cardElement);
+};
+
+cards.renderer();
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
@@ -47,16 +60,6 @@ function formSubmitHandler(evt) {
     profileText.textContent = profileTextInput.value;
     closePopup(popupReductionWindow);
 };
-
-function createCard(item) {
-    const card = new Card(item, '.template');
-    const cardElement = card.generateCard();
-    return cardElement;
-};
-
-initialCards.forEach((item) => {
-    cardsContainer.prepend(createCard(item));
-});
 
 function toAddCard() {
     const inputNamePlace = inputPlace.value;
