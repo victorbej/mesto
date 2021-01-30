@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Section from './Section.js';
+=======
+
+>>>>>>> 4b2835639b218258223e0873680e3c7f17539669
 import { initialCards } from './InitialCards.js';
 import { Card } from './Card.js';
 import { popupBigWindow, bigWindowCloseButton } from './variables.js';
@@ -8,6 +12,7 @@ import { popupInitialCardsWindow, popupAddButton, popupAddButtonClose, formEleme
 import { inputPlace, inputLink } from './variables.js';
 import { enablePopupProfile, enablePopupAddCard } from './FormValidator.js';
 import { cardsContainer } from './variables.js';
+<<<<<<< HEAD
 
 
 const section = new Section({
@@ -21,6 +26,8 @@ function createCard(item) {
 };
 
 section.renderer();
+=======
+>>>>>>> 4b2835639b218258223e0873680e3c7f17539669
 
 function popupOpen(popup) {
     popup.classList.add('popup_opened');
@@ -62,6 +69,7 @@ function formSubmitHandler(evt) {
     closePopup(popupReductionWindow);
 };
 
+<<<<<<< HEAD
 function toAddCard() {
     const inputNamePlace = inputPlace.value;
     const inputLinkPlace = inputLink.value;
@@ -73,6 +81,9 @@ function toAddCardFormSubmit(evt) {
     toAddCard();
     closePopup(popupInitialCardsWindow);
 };
+=======
+
+>>>>>>> 4b2835639b218258223e0873680e3c7f17539669
 
 popupReductionButton.addEventListener('click', () => {
     toReset(popupReductionWindow);
