@@ -49,7 +49,7 @@
       <div class="popup__container popup__container_profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button type="button" class="popup__close-button"></button>
-        <form class="popup__formfield" name="name" novalidate>
+        <form class="popup__formfield popup__formfield_profile" name="name" novalidate>
           <div class="popup__input-warapper">
             <input id="name-input" type="text" name="name-input"
               class="popup__formfield-input popup__formfield-input_name" placeholder="Имя" minlength="2" maxlength="40"
@@ -70,7 +70,7 @@
       <div class="popup__container popup__container_place">
         <h2 class="popup__title">Новое место</h2>
         <button type="button" class="popup__close-button"></button>
-        <form class="popup__formfield" name="place" novalidate>
+        <form class="popup__formfield popup__formfield_add-card" name="place" novalidate>
           <div class="popup__input-warapper">
             <input id="place-input" type="text" name="place-input"
               class="popup__formfield-input popup__formfield-input_place" placeholder="Место" minlength="2"
@@ -98,7 +98,7 @@
   </div>
 
 
-  <template id="temp">
+  <template id="temp" class="template">
     <li class="gallery__list">
       <img src="example.png" alt="Картинка" class="gallery__list-image">
       <div class="gallery__list-wrapper">
@@ -109,9 +109,12 @@
     </li>
   </template>
 
-
-  <script src="./script/index.js"></script>
-  <script src="./script/validate.js"></script>
+  <script type="module" src="./script/index.js"></script>
+  <script type="module" src="./script/Card.js"></script>
+  <script type="module" src="./script/InitialCards.js"></script>
+  <script type="module" src="./script/FormValidator.js"></script>
+  <script type="module" src="./script/variables.js"></script>
+  <script type="module" src="./script/Section.js"></script>
 
 </body>
 
