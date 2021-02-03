@@ -1,12 +1,10 @@
-import { pictureItem, pictureTextItem, popupBigWindow} from './variables.js';
-import { popupOpen } from './index.js';
-
-export class Card {
-    constructor(data, cardSelector) {
+export default class Card {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-    };
+        this._handleCardClick = handleCardClick;
+    }
 
     _getTemplate() {
         const cardElement = document
@@ -16,7 +14,7 @@ export class Card {
             .cloneNode(true)
 
         return cardElement;
-    };
+    }
 
     generateCard() {
         this._element = this._getTemplate();
@@ -28,21 +26,15 @@ export class Card {
         this._setEventListeners();
 
         return this._element;
-    };
+    }
 
     _handleLikeCardClick() {
         this._element.querySelector('.gallery__like-button').classList.toggle('gallery__like-button_active');
-    };
+    }
 
     _handleDeleteCardClick() {
         this._element.remove();
-    };
-
-    _handleOpenPopup() {
-        pictureItem.src = this._link;
-        pictureTextItem.textContent = this._name;
-        popupOpen(popupBigWindow);
-    };
+    }
 
     _setEventListeners() {
         this._element.querySelector('.gallery__like-button').addEventListener('click', () => {
@@ -51,9 +43,9 @@ export class Card {
         this._element.querySelector('.gallery__delete-button').addEventListener('click', () => {
             this._handleDeleteCardClick();
         });
-        this._picture.addEventListener('click', () => {
-            this._handleOpenPopup();
+        this._picture.addEventListener('click', event => {
+            this._handleCardClick(event);
         });
-    };
-    
-};
+    }
+
+}
