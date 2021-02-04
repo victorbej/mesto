@@ -28,3 +28,5 @@ export const initialCards = [
 
 export const cardsContainer = document.querySelector('.gallery__lists');
 export const cardSelector = document.querySelector('.template');
+export const reductionButton = document.querySelector('.profile__reduction-button');
+export const addCardButton = document.querySelector('.profile__add-button');
