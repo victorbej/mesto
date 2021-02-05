@@ -7,7 +7,9 @@ import {
     initialCards,
     cardsContainer,
     reductionButton,
-    addCardButton
+    addCardButton,
+    inputName,
+    inputJob
 } from '../utils/constants.js';
 
 
@@ -45,7 +47,9 @@ const userInfo = new UserInfo('.profile__title', '.profile__text');
 
 // 'PopupWithForm' class performance
 const profileEditPopup = new PopupWithForm({
-    containerSelector: '.popup_reduction-window'
+    containerSelector: '.popup_reduction-window', handleSubmit: ({ ['name-input']: name, ['about']: job }) => {
+        userInfo.setUserInfo(name, job);
+    }
 });
 const addCardPopup = new PopupWithForm({
     containerSelector: '.popup_initial-cards-window'
@@ -55,6 +59,8 @@ profileEditPopup.setEventListeners();
 addCardPopup.setEventListeners();
 
 reductionButton.addEventListener('click', () => {
+    inputName.value = userInfo.getUserInfo().name;
+    inputJob.value = userInfo.getUserInfo().job;
     profileEditPopup.open();
 });
 
