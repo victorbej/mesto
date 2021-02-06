@@ -3,6 +3,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import FormValidator from '../components/FormValidator.js';
 import {
     initialCards,
     cardsContainer,
@@ -11,7 +12,8 @@ import {
     inputName,
     inputJob,
     inputPlace,
-    inputLink
+    inputLink,
+    validationConfig
 } from '../utils/constants.js';
 
 
@@ -59,6 +61,7 @@ profileEditPopup.setEventListeners();
 reductionButton.addEventListener('click', () => {
     inputName.value = userInfo.getUserInfo().name;
     inputJob.value = userInfo.getUserInfo().job;
+    enablePopupProfile.toResetValididation();
     profileEditPopup.open();
 });
 
@@ -76,5 +79,16 @@ addCardPopup.setEventListeners();
 addCardButton.addEventListener('click', () => {
     inputPlace.value = '';
     inputLink.value = '';
+    enablePopupAddCard.toResetValididation();
     addCardPopup.open();
 });
+
+
+// 'FormValidator' class performance and it's enable for profile popup
+const enablePopupProfile = new FormValidator(validationConfig, '.popup__formfield_profile');
+enablePopupProfile.enableValidation();
+
+
+// 'FormValidator' class performance and it's enable for card insert popup
+const enablePopupAddCard = new FormValidator(validationConfig, '.popup__formfield_add-card');
+enablePopupAddCard.enableValidation();

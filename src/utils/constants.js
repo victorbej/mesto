@@ -25,6 +25,13 @@ export const initialCards = [
     }
 ];
 
+export const validationConfig = {
+    formSelector: '.popup__formfield',
+    inputSelector: '.popup__formfield-input',
+    inputInvalidClass: 'popup__formfield-input_error',
+    submitButtonSelector: '.popup__save-button',
+    buttonInvalidClass: 'popup__save-button_invalid'
+};
 
 export const cardsContainer = document.querySelector('.gallery__lists');
 export const cardSelector = document.querySelector('.template');
