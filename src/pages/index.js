@@ -9,7 +9,9 @@ import {
     reductionButton,
     addCardButton,
     inputName,
-    inputJob
+    inputJob,
+    inputPlace,
+    inputLink
 } from '../utils/constants.js';
 
 
@@ -45,18 +47,14 @@ function clickOnCard(event) {
 const userInfo = new UserInfo('.profile__title', '.profile__text');
 
 
-// 'PopupWithForm' class performance
+// 'PopupWithForm' class performance for profile popup implementation
 const profileEditPopup = new PopupWithForm({
     containerSelector: '.popup_reduction-window', handleSubmit: ({ ['name-input']: name, ['about']: job }) => {
         userInfo.setUserInfo(name, job);
     }
 });
-const addCardPopup = new PopupWithForm({
-    containerSelector: '.popup_initial-cards-window'
-});
 
 profileEditPopup.setEventListeners();
-addCardPopup.setEventListeners();
 
 reductionButton.addEventListener('click', () => {
     inputName.value = userInfo.getUserInfo().name;
@@ -64,6 +62,19 @@ reductionButton.addEventListener('click', () => {
     profileEditPopup.open();
 });
 
+
+// 'PopupWithForm' class performance for card insert popup implementation
+const addCardPopup = new PopupWithForm({
+    containerSelector: '.popup_initial-cards-window', handleSubmit: ({ ['place-input']: name, ['place-link']: link }) => {
+        const card = new Card({ name, link }, '#temp', clickOnCard);
+        section.addItem(card.generateCard());
+    }
+});
+
+addCardPopup.setEventListeners();
+
 addCardButton.addEventListener('click', () => {
+    inputPlace.value = '';
+    inputLink.value = '';
     addCardPopup.open();
 });
