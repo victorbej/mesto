@@ -26,6 +26,10 @@ const section = new Section({
 function createCard(item, cardSelector, handleCardClick) {
     const card = new Card(item, cardSelector, handleCardClick);
     const cardElement = card.generateCard();
+    addElement(cardElement);
+}
+
+function addElement(cardElement) {
     section.addItem(cardElement);
 }
 
@@ -36,13 +40,8 @@ section.renderer();
 const popupBigPicture = new PopupWithImage('.popup_big-window-picture');
 popupBigPicture.setEventListeners();
 
-function clickOnCard(event) {
-    const pictureItem = event.target;
-    const pictureText = pictureItem.closest('.gallery__list')
-        .querySelector('.gallery__list-title')
-        .textContent;
-
-    popupBigPicture.open(pictureText, pictureItem.src);
+function clickOnCard(name, link) {
+    popupBigPicture.open(name, link);
 }
 
 
@@ -70,8 +69,8 @@ reductionButton.addEventListener('click', () => {
 // 'PopupWithForm' class performance for card insert popup implementation
 const addCardPopup = new PopupWithForm({
     containerSelector: '.popup_initial-cards-window', handleSubmit: ({ ['place-input']: name, ['place-link']: link }) => {
-        const card = new Card({ name, link }, '#temp', clickOnCard);
-        section.addItem(card.generateCard());
+        const card = createCard({ name, link }, '#temp', clickOnCard);
+        addElement(card);
     }
 });
 
