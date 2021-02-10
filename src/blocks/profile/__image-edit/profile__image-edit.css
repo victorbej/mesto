@@ -1,0 +1,20 @@
+.profile__image-edit {
+    width: 120px;
+    height: 120px;
+    box-sizing: border-box;
+    background-image: url('../../../images/VectorEdit.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .4s ease-in-out;
+    opacity: 0;
+}
+
+.profile__image-edit:hover {
+    opacity: 1;
+}

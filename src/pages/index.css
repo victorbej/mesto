@@ -45,3 +45,5 @@
 @import url('../blocks/popup/__save-button/_invalid/popup__save-button_invalid.css');
 @import url('../blocks/gallery/__likes-count/gallery__likes-count.css');
 @import url('../blocks/gallery/__likes-container/gallery__likes-container.css');
+@import url('../blocks/profile/__image-edit/profile__image-edit.css');
+@import url('../blocks/profile/__container/profile__container.css');
