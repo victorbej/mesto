@@ -47,3 +47,5 @@
 @import url('../blocks/gallery/__likes-container/gallery__likes-container.css');
 @import url('../blocks/profile/__image-edit/profile__image-edit.css');
 @import url('../blocks/profile/__container/profile__container.css');
+@import url('../blocks/gallery/__delete-button/_hidden/gallery__delete-button_hidden.css');
+@import url('../blocks/profile/__image/profile__image.css');
