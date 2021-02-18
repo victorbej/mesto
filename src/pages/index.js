@@ -4,7 +4,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import FormValidator from '../components/FormValidator.js';
+// import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 import {
   cardsContainer,
@@ -14,13 +14,12 @@ import {
   inputJob,
   inputPlace,
   inputLink,
-  validationConfig,
-  // popupEditAvatar
+  // validationConfig,
+  editAvatarButton
 } from '../utils/constants.js';
 
 
-const userInfo = new UserInfo('.profile__title', '.profile__text', '.profile__image');
-
+//getting api
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-20/",
   headers: {
@@ -29,73 +28,26 @@ const api = new Api({
   },
 });
 
-Promise.all([
-  api.getUserInfo(),
-  api.getInitialCards()
-])
-  .then((values) => {
-    const [user, initialCards] = values;
-    userInfo.getUserInfo(user.name, user.about, user.avatar);
-    userInfo.setUserInfo(user)
+// this is all about user info
+const userInfo = new UserInfo('.profile__title', '.profile__text', '.profile__image');
 
-    const section = new Section({
-      items: initialCards, renderer: (item) => { createCard(item, '#temp', clickOnCard) },
-    }, cardsContainer);
-    section.renderer(initialCards);
-
-    function createCard(item, cardSelector, handleCardClick) {
-      const card = new Card(item, cardSelector, handleCardClick);
-      const cardElement = card.generateCard();
-      addElement(cardElement);
-    }
-
-    function addElement(cardElement) {
-      section.addItem(cardElement);
-    }
-
-    const addCardPopup = new PopupWithForm({
-      containerSelector: '.popup_initial-cards-window',
-      handleSubmit: (input) => {
-        api.addNewCard({
-          name: input['place-input'],
-          link: input['place-link']
-        })
-          .then(data => {
-            createCard(data, '#temp', clickOnCard);
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      }
-    });
-
-    addCardPopup.setEventListeners();
-
-    addCardButton.addEventListener('click', () => {
-      inputPlace.value = '';
-      inputLink.value = '';
-      enablePopupAddCard.toResetValididation();
-      addCardPopup.open();
-    });
-
+api.getUserInfo()
+  .then(res => {
+    userInfo.setUserInfo(res.name, res.about)
+    userInfo.setAvatar(res.avatar)
   })
-  .catch((err) => {
-    console.log(err);
-  })
+  .catch((error) => {
+    console.log(error);
+  });
 
-// 'PopupWithImage' class performance, popup with picture formed and packed
-const popupBigPicture = new PopupWithImage('.popup_big-window-picture');
-popupBigPicture.setEventListeners();
-
-function clickOnCard(name, link) {
-  popupBigPicture.open(name, link);
-}
-
-
-// 'PopupWithForm' class performance for card insert popup implementation
 const profileEditPopup = new PopupWithForm({
-  containerSelector: '.popup_reduction-window', handleSubmit: ({ ['name-input']: name, ['about']: about }) => {
-    userInfo.setUserInfo(name, about);
+  containerSelector: '.popup_reduction-window',
+  handleSubmit: ({ ['name-input']: name, ['about']: about }) => {
+    api.editUserInfo(name, about)
+      .then(res => userInfo.setUserInfo(res.name, res.about))
+      .catch((error) => {
+        console.log(error);
+      });
   }
 });
 
@@ -104,16 +56,85 @@ profileEditPopup.setEventListeners();
 reductionButton.addEventListener('click', () => {
   inputName.value = userInfo.getUserInfo().name;
   inputJob.value = userInfo.getUserInfo().about;
-  enablePopupProfile.toResetValididation();
   profileEditPopup.open();
 });
 
+const avatarEditPopup = new PopupWithForm({
+  containerSelector: '.popup_download-avatar',
+  handleSubmit: ({ ['place-avatar']: avatar }) => {
+    api.editAvatar(avatar)
+      .then(res => userInfo.setAvatar(res.avatar))
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+});
 
-// 'FormValidator' class performance and it's enable for profile popup
-const enablePopupProfile = new FormValidator(validationConfig, '.popup__formfield_profile');
-enablePopupProfile.enableValidation();
+avatarEditPopup.setEventListeners();
+
+editAvatarButton.addEventListener('click', () => {
+  avatarEditPopup.open();
+});
 
 
-// 'FormValidator' class performance and it's enable for card insert popup
-const enablePopupAddCard = new FormValidator(validationConfig, '.popup__formfield_add-card');
-enablePopupAddCard.enableValidation()
+// this is all about cards
+const section = new Section({
+  items: {}, renderer: (item) => { createCard(item, '#temp', clickOnCard) },
+}, cardsContainer);
+
+function createCard(item, cardSelector, handleCardClick) {
+  const card = new Card(item, cardSelector, handleCardClick);
+  const cardElement = card.generateCard();
+  addElement(cardElement);
+}
+
+function addElement(cardElement) {
+  section.addItem(cardElement);
+}
+
+const popupBigPicture = new PopupWithImage('.popup_big-window-picture');
+popupBigPicture.setEventListeners();
+
+function clickOnCard(name, link) {
+  popupBigPicture.open(name, link);
+}
+
+const addCardPopup = new PopupWithForm({
+  containerSelector: '.popup_initial-cards-window',
+  handleSubmit: (input) => {
+    api.addNewCard({
+      name: input['place-input'],
+      link: input['place-link']
+    })
+      .then(data => {
+        createCard(data, '#temp', clickOnCard);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+});
+
+addCardPopup.setEventListeners();
+
+addCardButton.addEventListener('click', () => {
+  inputPlace.value = '';
+  inputLink.value = '';
+  addCardPopup.open();
+});
+
+
+// this is rendering
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(([user, initialCards]) => {
+    userInfo.setUserInfo(user.name, user.about);
+    userInfo.setAvatar(user.avatar);
+    section.setRenderedItems(initialCards);
+    section.renderer(initialCards);
+  })
+  .catch((error) => {
+    console.log(error);
+  });

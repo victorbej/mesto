@@ -3,4 +3,11 @@
 	height: 120px;
 	object-fit: cover;
 	border-radius: 120px;
+	margin-bottom: 25px;
 }
+
+@media (min-width: 1024px) {
+	.profile__image {
+	  margin-bottom: 0;
+	}
+  }

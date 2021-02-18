@@ -19,8 +19,9 @@
 
       <section class="profile">
         <div class="profile__container">
-          <img src="<%=require('./images/Avatar.png')%>" class="profile__image" alt="Фото исследователя">
-          <div class="profile__image-edit"></div>
+          <div class="profile__image-edit">
+            <img src="<%=require('./images/Avatar.png')%>" class="profile__image" alt="Фото исследователя">
+          </div>
         </div>
         <div class="profile__name-button">
           <div class="profile__wrapper">
@@ -105,8 +106,8 @@
       <button type="button" class="popup__close-button"></button>
       <form class="popup__formfield popup__formfield_download-avatar" name="avatar" novalidate>
         <div class="popup__input-warapper">
-          <input type="url" name="place-avatar" id="place-avatar" class="popup__formfield-input popup__formfield-input_link"
-            placeholder="Ссылка на картинку" required />
+          <input type="url" name="place-avatar" id="place-avatar"
+            class="popup__formfield-input popup__formfield-input_link" placeholder="Ссылка на картинку" required />
           <span id="place-link-error" class="error"></span>
         </div>
         <button type="submit" class="popup__save-button">Сохранить</button>

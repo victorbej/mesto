@@ -14,4 +14,4 @@ export const inputName = document.querySelector('.popup__formfield-input_name');
 export const inputJob = document.querySelector('.popup__formfield-input_job');
 export const inputPlace = document.querySelector('.popup__formfield-input_place');
 export const inputLink = document.querySelector('.popup__formfield-input_link');
-// export const popupEditAvatar = document.querySelector('.profile__reduction-button');
+export const editAvatarButton = document.querySelector('.profile__image-edit');
