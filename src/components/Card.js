@@ -33,6 +33,12 @@ export default class Card {
         return this._element;
     }
 
+    _setDeleteItem() {
+        if (this._userData._id !== this._data.owner._id) {
+            this._element.querySelector('.gallery__delete-button').remove();
+        }
+    }
+
     checkLike() {
         const checkId = (item) => item._id == this._userData._id;
         const isLiked = this._data.likes.some(checkId);
@@ -55,7 +61,9 @@ export default class Card {
         this._element.querySelector('.gallery__like-button').addEventListener('click', () => {
             this._handleCardLike(this._data._id);
         });
-
+        this._element.querySelector('.gallery__delete-button').addEventListener('click', () => {
+            this._handleCardDelete(this._element, this._data._id);
+        });
         this._element.querySelector('.gallery__list-image').addEventListener('click', () => {
             this._handleCardClick(this._name, this._link);
         });

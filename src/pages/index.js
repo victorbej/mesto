@@ -111,3 +111,40 @@ const addCardPopup = new PopupWithForm({
       });
   }
 });
+
+const deleteCardPopup = new PopupWithConfirmDelete({
+  containerSelector: popupDelete,
+  handleSubmit: ({ element, cardId }) => {
+    toLoad(popupDelete, true);
+    api.deletePlaceCard(cardId)
+      .then(() => {
+        element.remove();
+        toLoad(popupDelete, false);
+        deleteCardPopup.close();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+});
+
+const cardList = new Section({
+  data: {},
+  renderer: (item, userData) => {
+    const card = createCard(item, '#temp', userData);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+}, cardsContainer
+);
+
+//promise
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initalCards, userResult]) => {
+    userInfo.setUserInfo(userResult._id, userResult.name, userResult.about, userResult.avatar);
+    cardList.setRenderedItems(initalCards);
+    cardList.renderer(userResult);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
