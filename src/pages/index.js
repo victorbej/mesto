@@ -148,3 +148,35 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .catch((error) => {
     console.log(error);
   });
+
+
+  //buttons
+reductionButton.addEventListener('click', () => {
+  profileEditPopup.open();
+  inputName.value = userInfo.getUserInfo().nameSelector;
+  inputJob.value = userInfo.getUserInfo().aboutSelector;
+  profileValidation.toResetValididation();
+});
+
+editAvatarButton.addEventListener('click', () => {
+  avatarEditPopup.open();
+  inputAvatar.value = userInfo.getUserInfo().avatarSelector.src;
+  avatarValidation.toResetValididation();
+})
+
+addCardButton.addEventListener('click', () => {
+  addCardPopup.open();
+  placeValidation.toResetValididation();
+});
+
+//event listeners
+addCardPopup.setEventListeners();
+profileEditPopup.setEventListeners();
+avatarEditPopup.setEventListeners();
+deleteCardPopup.setEventListeners();
+popupBigPicture.setEventListeners();
+
+//validation
+profileValidation.enableValidation();
+avatarValidation.enableValidation();
+placeValidation.enableValidation();
