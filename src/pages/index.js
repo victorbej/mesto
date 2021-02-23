@@ -38,7 +38,7 @@ function toLoad(popup, loading) {
     saveLoadingButton.textContent = 'Загрузка…';
   }
   else {
-    saveLoadingButton.textContent = 'Готово';
+    saveLoadingButton.textContent = 'Сохранить';
   }
 }
 
@@ -107,6 +107,12 @@ const profileEditPopup = new PopupWithForm({
         userInfo.setUserInfo(data._id, data.name, data.about, data.avatar);
         profileEditPopup.close();
         toLoad(popupEdit, false);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        toLoad(popupEdit, false);
       });
   }
 });
@@ -114,14 +120,19 @@ const profileEditPopup = new PopupWithForm({
 const avatarEditPopup = new PopupWithForm({
   containerSelector: popupEditAvatar,
   handleSubmit: (input) => {
-    toLoad(popupEdit, true);
+    toLoad(popupEditAvatar, true);
     api.editAvatar(input['place-avatar'])
       .then(data => {
         userInfo.setUserInfo(data._id, data.name, data.about, data.avatar);
         avatarEditPopup.close();
-        toLoad(popupEdit, false);
+        toLoad(popupEditAvatar, false);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        toLoad(popupEditAvatar, false);
       });
-
   }
 });
 
@@ -139,6 +150,12 @@ const addCardPopup = new PopupWithForm({
         cardList.addNewItem(cardElement);
         toLoad(pupupInitialCards, false);
         addCardPopup.close();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        toLoad(pupupInitialCards, false);
       });
   }
 });
@@ -146,16 +163,14 @@ const addCardPopup = new PopupWithForm({
 const deleteCardPopup = new PopupWithConfirmDelete({
   containerSelector: popupDelete,
   handleSubmit: ({ element, cardId }) => {
-    toLoad(popupDelete, true);
     api.deletePlaceCard(cardId)
       .then(() => {
         element.remove();
-        toLoad(popupDelete, false);
         deleteCardPopup.close();
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
   }
 });
 
@@ -166,8 +181,7 @@ const cardList = new Section({
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   }
-}, cardsContainer
-);
+}, cardsContainer);
 
 //promise
 Promise.all([api.getInitialCards(), api.getUserInfo()])
