@@ -3,17 +3,44 @@ import './index.css';
 
 //scripts
 import Api from '../components/Api.js';
+import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmDelete from '../components/PopupWithConfirmDelete.js';
 
 //constants
 import {
   nameSelector,
   aboutSelector,
   avatarSelector,
+  popupEdit,
+  popupEditAvatar,
+  pupupInitialCards,
+  popupDelete,
+  reductionButton,
+  editAvatarButton,
+  addCardButton,
+  inputName,
+  inputJob,
+  inputAvatar,
+  cardsContainer,
+  validationConfig
 } from '../utils/constants.js';
 
+//extra functions
+function toLoad(popup, loading) {
+  const saveLoadingButton = document.querySelector(popup).querySelector('.popup__save-button');
+
+  if (loading) {
+    saveLoadingButton.textContent = 'Загрузка…';
+  }
+  else {
+    saveLoadingButton.textContent = 'Готово';
+  }
+}
 
 //card
 function createCard(data, cardSelector, userData) {
@@ -63,6 +90,10 @@ const api = new Api({
 const userInfo = new UserInfo({ nameSelector, aboutSelector, avatarSelector });
 
 const popupBigPicture = new PopupWithImage('.popup_big-window-picture');
+
+const profileValidation = new FormValidator(validationConfig, '.popup__formfield_profile');
+const avatarValidation = new FormValidator(validationConfig, '.popup__formfield_download-avatar');
+const placeValidation = new FormValidator(validationConfig, '.popup__formfield_add-card');
 
 const profileEditPopup = new PopupWithForm({
   containerSelector: popupEdit,
@@ -149,8 +180,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(error);
   });
 
-
-  //buttons
+//buttons
 reductionButton.addEventListener('click', () => {
   profileEditPopup.open();
   inputName.value = userInfo.getUserInfo().nameSelector;
