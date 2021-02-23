@@ -63,3 +63,51 @@ const api = new Api({
 const userInfo = new UserInfo({ nameSelector, aboutSelector, avatarSelector });
 
 const popupBigPicture = new PopupWithImage('.popup_big-window-picture');
+
+const profileEditPopup = new PopupWithForm({
+  containerSelector: popupEdit,
+  handleSubmit: (input) => {
+    toLoad(popupEdit, true);
+    api.editUserInfo({
+      name: input['name-input'],
+      about: input['about']
+    })
+      .then(data => {
+        userInfo.setUserInfo(data._id, data.name, data.about, data.avatar);
+        profileEditPopup.close();
+        toLoad(popupEdit, false);
+      });
+  }
+});
+
+const avatarEditPopup = new PopupWithForm({
+  containerSelector: popupEditAvatar,
+  handleSubmit: (input) => {
+    toLoad(popupEdit, true);
+    api.editAvatar(input['place-avatar'])
+      .then(data => {
+        userInfo.setUserInfo(data._id, data.name, data.about, data.avatar);
+        avatarEditPopup.close();
+        toLoad(popupEdit, false);
+      });
+
+  }
+});
+
+const addCardPopup = new PopupWithForm({
+  containerSelector: pupupInitialCards,
+  handleSubmit: (input) => {
+    toLoad(pupupInitialCards, true);
+    api.addPlaceCard({
+      name: input['place-input'],
+      link: input['place-link']
+    })
+      .then(data => {
+        const card = createCard(data, '#temp', userInfo.getUserInfo());
+        const cardElement = card.generateCard();
+        cardList.addNewItem(cardElement);
+        toLoad(pupupInitialCards, false);
+        addCardPopup.close();
+      });
+  }
+});
